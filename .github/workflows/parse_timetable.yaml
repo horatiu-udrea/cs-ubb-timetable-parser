@@ -53,7 +53,7 @@ jobs:
             destination: './site'
 
       - name: Copy YAML and Markdown files to site
-        run: 'cp -r ./timetables/ ./site/'
+        run: 'cp -r ./timetables/ ./site'
 
       - name: Upload timetable files
         uses: actions/upload-pages-artifact@v3
