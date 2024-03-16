@@ -51,9 +51,9 @@ If no errors occur, the timetable files will be downloaded in the `timetables` d
 ## Who started all this?
 Hi, my name is **Horațiu Udrea**, I'm a passionate **Life Coach** and **Software Engineer**. I love creating **synergistic tools** for people and empowering them to live the **best life** they can, **no compromises**.
 
-Find out more about me on [my website](https://horatiu-udrea.ro) and contact me if you like what I do (and why I do it), I'd love to hear your story!
+Find out more about me on [my website](https://horatiu-udrea.ro) and contact me if you like what you see. I'd love to hear from you!
 
-## What's the story behind it?
+## What's the story behind the project?
 I was a student at this university a while ago, and I wanted to make something useful while I learned Kotlin. 
 So I created an **Android application** that parsed the faculty's timetable and showed me only what I needed to see (my group's timetable), how I needed to see it (neatly arranged, only the courses of the current week) 
 and when I needed to see it (even offline). 
@@ -74,15 +74,15 @@ The "quick update" process was this:
 
 And all this happened when the timetable was needed most: at the beginning of the semester, when a new timetable was available. 
 
-This passion project intends to be a building block for systems that aim to mitigate these flaws. You live, you learn!
+That's the reason this new project is a building block for systems that won't have these flaws by design. You live, you learn!
 
 ## Will this project be maintained?
 That depends on you :D
 
 I plan on having a look at the code from time to time, reviewing and merging pull requests and answering some questions. But the heavy lifting will be done by the community. 
-And that includes you! You can always step in an improve what you feel needs improving. You can be the 12AM hero or just fix some spelling issue for your colleagues. Everything is appreciated!
+And that includes you! You can always step in and improve what you feel needs improving. You can be the 12AM hero or just fix some spelling issue for your colleagues. Everything is appreciated!
 
-If one day the direction of the project doesn't suit your style anymore or I simply go silent, the repository can just be forked and adjusted.
+If, one day, the direction of the project doesn't suit your style anymore or I simply go silent, the repository can simply be forked and adjusted. No gatekeeping!
 
 ## Will you make a new app?
 I'd love to. 
