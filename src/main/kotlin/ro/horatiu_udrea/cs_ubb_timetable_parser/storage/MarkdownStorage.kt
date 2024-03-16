@@ -21,6 +21,7 @@ class MarkdownStorage: Storage {
             val fetchDate = "${date.dayOfMonth}.${date.monthNumber.toString().padStart(2, '0')}.${date.year}"
             writer.println("# Orar Mate-Info UBB • Ultima actualizare: $fetchDate")
             timetableIndex.timetableSetIndices.forEach { (year, semester, timetableSetIndices) ->
+                val timetableSet = TimetableSet(year, semester)
                 writer.println("## Anul $year-${year + 1} • Semestrul $semester")
                 timetableSetIndices.forEach { (studyType, year, specialisations) ->
                     writer.println("<details>")
@@ -35,12 +36,13 @@ class MarkdownStorage: Storage {
                     specialisations.forEach { (name, groups) ->
                         writer.print("$name: ")
                         val groupLinks = groups.joinToString { group ->
-                            val path = getMarkdownTimetablePath(TimetableSet(year, semester), group)
+                            val path = getMarkdownTimetablePath(timetableSet, group)
                                 .relativeTo(markdownIndexPath.parent)
                             "[$group]($path)"
                         }
                         writer.println("$groupLinks  ")
                     }
+                    writer.println()
                     writer.println("</details>")
                     writer.println()
                 }

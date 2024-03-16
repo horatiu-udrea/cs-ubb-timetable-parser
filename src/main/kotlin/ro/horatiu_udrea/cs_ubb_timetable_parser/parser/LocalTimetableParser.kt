@@ -45,8 +45,8 @@ class LocalTimetableParser(private val timetableScraper: TimetableScraper, priva
                                 saveGroupTimetable(
                                     timetableSet,
                                     specialisationName,
-                                    groupName,
                                     link,
+                                    groupName,
                                     groupTimetable
                                 )
                             }

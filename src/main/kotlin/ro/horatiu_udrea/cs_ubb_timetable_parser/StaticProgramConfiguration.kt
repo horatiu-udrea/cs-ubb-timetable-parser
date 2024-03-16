@@ -34,10 +34,10 @@ class StaticProgramConfiguration(@Suppress("UNUSED_PARAMETER") args: Array<out S
     }
 
     override fun getIndexPath(): Path =
-        timetablesPath / "timetables.yaml"
+        timetablesPath / "index.yaml"
 
     override fun getMarkdownIndexPath(): Path =
-        timetablesPath / "Timetables.md"
+        timetablesPath / "index.md"
 
     override fun getMarkdownTimetablePath(timetableSet: TimetableSet, groupName: String): Path =
         getTimetableCollectionPath(timetableSet) / "$groupName.md"
