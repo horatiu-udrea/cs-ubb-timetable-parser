@@ -34,13 +34,13 @@ class MarkdownStorage: Storage {
                     writer.println(" • Anul $year</summary>")
                     writer.println()
                     specialisations.forEach { (name, groups) ->
-                        writer.print("$name: ")
+                        writer.print("<span>$name: ")
                         val groupLinks = groups.joinToString { group ->
                             val path = getMarkdownTimetablePath(timetableSet, group)
                                 .relativeTo(markdownIndexPath.parent)
-                            "[$group]($path)"
+                            "<a href=\"$path\">$group</a>"
                         }
-                        writer.println("$groupLinks  ")
+                        writer.println("$groupLinks</span><br />")
                     }
                     writer.println()
                     writer.println("</details>")
