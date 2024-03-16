@@ -1,0 +1,32 @@
+# Documentation for all configuration options:
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Updates for Github Actions used in the repo
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      action-updates:
+        patterns:
+          - "*"
+
+  # Updates for Gradle dependencies used in the project
+  - package-ecosystem: gradle
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      minor-dependency-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      major-dependency-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "major"

@@ -1,0 +1,66 @@
+name: Parse timetable and publish to Github Pages
+on:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  schedule:
+    # At 02:00 every day from September through January
+    - cron: "0 2 * 1-6,9-12 *"
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "publish-timetable"
+
+# Set up environment variables
+env:
+  JAVA_VERSION: '21'
+  JAVA_DISTRIBUTION: 'adopt'
+
+jobs:
+  publish:
+    name: Generate timetable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{env.JAVA_VERSION}}
+          distribution: ${{env.JAVA_DISTRIBUTION}}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Scrape and parse timetable
+        working-directory: ${{env.KOMPOST_REPO}}
+        run: ./gradlew run
+
+      - name: Upload timetable files
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Generated timetables path
+          path: timetables
+
+  deploy:
+    name: Deploy timetable
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
