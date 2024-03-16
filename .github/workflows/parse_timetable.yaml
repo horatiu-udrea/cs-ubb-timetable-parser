@@ -55,6 +55,9 @@ jobs:
             source: './timetables'
             destination: './site'
 
+      - name: Rewrite links on html index
+        run: "sed -i 's/.md/.html/g' ./site/index.html"
+
       - name: Upload timetable files
         uses: actions/upload-pages-artifact@v3
         with:
