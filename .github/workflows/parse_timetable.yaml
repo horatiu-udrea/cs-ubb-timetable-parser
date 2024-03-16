@@ -46,14 +46,14 @@ jobs:
       - name: Scrape and parse timetable
         run: ./gradlew run
 
+      - name: Copy YAML and Markdown files to site
+        run: 'cp -r ./timetables/ ./site'
+
       - name: Build site from Markdown files
         uses: actions/jekyll-build-pages@v1
         with:
             source: './timetables'
             destination: './site'
-
-      - name: Copy YAML and Markdown files to site
-        run: 'cp -r ./timetables/ ./site'
 
       - name: Upload timetable files
         uses: actions/upload-pages-artifact@v3
