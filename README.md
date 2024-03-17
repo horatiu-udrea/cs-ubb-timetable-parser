@@ -1,7 +1,9 @@
 # Student Timetable Parser
-###### Computer Science • Babeș-Bolyai University Cluj-Napoca
+> Computer Science • Babeș-Bolyai University Cluj-Napoca
 
 This is an **unofficial** parser for the **official** timetable located on [the faculty's website](https://www.cs.ubbcluj.ro/).
+
+All timetables are automatically parsed every day and stored on this [website](https://horatiu-udrea.github.io/cs-ubb-timetable-parser/).
 
 ## Why does this open-source project exist?
 Because computer science students love to:
