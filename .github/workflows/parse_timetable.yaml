@@ -44,7 +44,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Scrape and parse timetable
-        run: ./gradlew run
+        run: ./gradlew run >> $GITHUB_STEP_SUMMARY
 
       - name: Copy YAML and Markdown files to site
         run: 'cp -r ./timetables/ ./site'
