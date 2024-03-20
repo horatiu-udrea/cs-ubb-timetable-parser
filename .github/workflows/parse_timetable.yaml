@@ -6,7 +6,8 @@ on:
 
   schedule:
     # At 02:00 every day from September through June
-    - cron: "0 2 * 1-6,9-12 *"
+    - # noinspection YAMLSchemaValidation
+      cron: "0 2 * 1-6,9-12 *"
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -44,7 +45,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Scrape and parse timetable
-        run: ./gradlew run >> $GITHUB_STEP_SUMMARY
+        run: ./gradlew run --quiet 1>> $GITHUB_STEP_SUMMARY 2>> $GITHUB_STEP_SUMMARY
 
       - name: Copy YAML and Markdown files to site
         run: 'cp -r ./timetables/ ./site'
