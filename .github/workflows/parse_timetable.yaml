@@ -42,7 +42,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Scrape and parse timetable
         run: ./gradlew run --quiet 1>> $GITHUB_STEP_SUMMARY 2>> $GITHUB_STEP_SUMMARY
