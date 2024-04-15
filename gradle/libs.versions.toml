@@ -7,7 +7,7 @@ serialization = "1.6.3"
 kaml = "0.58.0" # Kotlinx Serialization YAML format
 junit = "5.10.2"
 datetime = "0.5.0"
-slf4j-nop = "2.0.12"
+slf4j-nop = "2.0.13"
 
 [libraries]
 skrapeit = { module = "it.skrape:skrapeit-html-parser", version.ref = "skrape_it" }
