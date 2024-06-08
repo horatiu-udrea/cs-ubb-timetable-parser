@@ -8,11 +8,12 @@ import io.ktor.utils.io.charsets.*
 import io.ktor.utils.io.core.*
 import it.skrape.core.htmlDocument
 import it.skrape.selects.DocElement
+import ro.horatiu_udrea.cs_ubb_timetable_parser.ProgramConfiguration
 import ro.horatiu_udrea.cs_ubb_timetable_parser.TimetableSet
 import ro.horatiu_udrea.cs_ubb_timetable_parser.models.*
 import java.net.URI
 
-context(ro.horatiu_udrea.cs_ubb_timetable_parser.ProgramConfiguration)
+context(ProgramConfiguration)
 class WebsiteTimetableScraper(private val httpClient: HttpClient) : TimetableScraper {
 
     override suspend fun scrapeTimetableIndex(timetableSet: TimetableSet): ScrapedIndex? {
