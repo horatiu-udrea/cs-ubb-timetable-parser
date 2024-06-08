@@ -5,12 +5,13 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.todayIn
+import ro.horatiu_udrea.cs_ubb_timetable_parser.ProgramConfiguration
 import ro.horatiu_udrea.cs_ubb_timetable_parser.TimetableSet
 import ro.horatiu_udrea.cs_ubb_timetable_parser.models.*
 import ro.horatiu_udrea.cs_ubb_timetable_parser.scraper.TimetableScraper
 import ro.horatiu_udrea.cs_ubb_timetable_parser.storage.Storage
 
-context(ro.horatiu_udrea.cs_ubb_timetable_parser.ProgramConfiguration)
+context(ProgramConfiguration)
 class LocalTimetableParser(private val timetableScraper: TimetableScraper, private val storage: Set<Storage>) :
     TimetableParser {
 
