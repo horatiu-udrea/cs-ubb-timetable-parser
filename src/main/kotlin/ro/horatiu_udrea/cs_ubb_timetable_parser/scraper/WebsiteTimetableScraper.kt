@@ -41,7 +41,8 @@ class WebsiteTimetableScraper(private val httpClient: HttpClient) : TimetableScr
 
         return htmlDocument(webpage) {
             val groups = findAll("h1").asSequence().drop(1).map { it.text }
-            val timetables = findAll("table").asSequence().map { table ->
+
+            val timetables = runCatching { findAll("table") }.getOrDefault(emptyList()).asSequence().map { table ->
                 runCatching { table.findAll("tr:not(:has(th))") }.getOrDefault(emptyList()).map { row ->
                     val cells = row.findAll("td")
                     val day = cells[0].text
