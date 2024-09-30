@@ -1,13 +1,13 @@
 [versions]
-kotlin = "2.0.0"
-ktor = "2.3.11"
+kotlin = "2.0.20"
+ktor = "2.3.12"
 skrape_it = "1.3.0-alpha.2"
-coroutines = "1.8.1"
-serialization = "1.7.0"
-kaml = "0.60.0" # Kotlinx Serialization YAML format
-junit = "5.10.2"
-datetime = "0.6.0"
-slf4j-nop = "2.0.13"
+coroutines = "1.9.0"
+serialization = "1.7.3"
+kaml = "0.61.0" # Kotlinx Serialization YAML format
+junit = "5.11.1"
+datetime = "0.6.1"
+slf4j-nop = "2.0.16"
 
 [libraries]
 skrapeit = { module = "it.skrape:skrapeit-html-parser", version.ref = "skrape_it" }
