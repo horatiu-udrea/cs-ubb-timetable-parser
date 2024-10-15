@@ -29,7 +29,7 @@ dependencies {
 // Force update for vulnerable transitive dependency from it.skrape:skrapeit-html-parser:1.3.0-alpha.2
 configurations.all {
     resolutionStrategy {
-        force("org.jsoup:jsoup:1.17.2")
+        force("org.jsoup:jsoup:1.18.1")
     }
 }
 
