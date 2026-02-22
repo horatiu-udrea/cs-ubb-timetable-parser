@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
 
   schedule:
-    # At 02:00 every day from September through June
+  # At 22:00 every day from September through June
     - # noinspection YAMLSchemaValidation
-      cron: "0 2 * 1-6,9-12 *"
+      cron: "0 22 * 1-6,9-12 *"
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
