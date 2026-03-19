@@ -3,6 +3,7 @@ package ro.horatiu_udrea.cs_ubb_timetable_parser.scraper
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.utils.io.charsets.*
 import io.ktor.utils.io.core.*
@@ -17,13 +18,26 @@ context(ProgramConfiguration)
 class WebsiteTimetableScraper(private val httpClient: HttpClient) : TimetableScraper {
 
     override suspend fun scrapeTimetableIndex(timetableSet: TimetableSet): ScrapedIndex? {
-        val url = getTimetableSetIndexUrl(timetableSet)
-        val response = httpClient.get(url)
-        if (response.status != HttpStatusCode.OK) return null
+        var responseToUse: HttpResponse? = null
+        for (url in getTimetableSetIndexUrlCandidates(timetableSet)) {
+            val response = httpClient.get(url)
+            when (response.status) {
+                HttpStatusCode.OK -> {
+                    rememberTimetableSetIndexUrl(timetableSet, url)
+                    responseToUse = response
+                    break
+                }
+
+                HttpStatusCode.NotFound -> Unit
+                else -> Unit
+            }
+        }
+
+        val response = responseToUse ?: return null
 
         // The charset from the response is wrong or nonexistent, so we're overriding it here
         val decoder = charset("ISO-8859-2").newDecoder()
-        val webpage = httpClient.get(url).body<ByteReadPacket>().let(decoder::decode)
+        val webpage = response.body<ByteReadPacket>().let(decoder::decode)
 
         return htmlDocument(webpage) {
             val bachelors = findFirst("table") { scrapeTableItems() }
