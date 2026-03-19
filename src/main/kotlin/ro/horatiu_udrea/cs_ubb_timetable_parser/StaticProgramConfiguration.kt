@@ -52,8 +52,8 @@ class StaticProgramConfiguration(@Suppress("UNUSED_PARAMETER") args: Array<out S
         val (year, semester) = timetableSet
 
         return listOf(
+            "https://www.cs.ubbcluj.ro/files/orar/$year-$semester-din-saptamana5/tabelar/",
             "https://www.cs.ubbcluj.ro/files/orar/$year-$semester/tabelar/",
-            "https://www.cs.ubbcluj.ro/files/orar/$year-$semester-din-saptamana5/tabelar/"
         )
     }
 
