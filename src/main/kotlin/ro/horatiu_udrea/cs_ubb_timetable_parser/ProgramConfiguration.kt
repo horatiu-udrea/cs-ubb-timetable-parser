@@ -46,6 +46,21 @@ interface ProgramConfiguration {
     /**
      * Generate the URL for the index
      */
+    fun getTimetableSetIndexUrlCandidates(timetableSet: TimetableSet): List<String>
+
+    /**
+     * Remember the URL that worked for the index of a timetable set
+     */
+    fun rememberTimetableSetIndexUrl(timetableSet: TimetableSet, url: String)
+
+    /**
+     * Get the resolved index URL, if one has already been discovered
+     */
+    fun getResolvedTimetableSetIndexUrl(timetableSet: TimetableSet): String?
+
+    /**
+     * Generate the URL for the index
+     */
     fun getTimetableSetIndexUrl(timetableSet: TimetableSet): String
 
     /**

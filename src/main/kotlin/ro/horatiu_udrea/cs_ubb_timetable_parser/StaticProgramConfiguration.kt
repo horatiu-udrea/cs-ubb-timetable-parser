@@ -5,6 +5,7 @@ import kotlinx.datetime.TimeZone
 import ro.horatiu_udrea.cs_ubb_timetable_parser.models.Creator
 import java.net.URI
 import java.nio.file.Path
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.div
@@ -17,6 +18,8 @@ class StaticProgramConfiguration(@Suppress("UNUSED_PARAMETER") args: Array<out S
         name = "Studenții CS UBB",
         website = "https://github.com/horatiu-udrea/cs-ubb-timetable-parser"
     )
+
+    private val resolvedTimetableSetIndexUrls = ConcurrentHashMap<TimetableSet, String>()
 
     override fun getTimetableDescription(groupName: String): String =
         "Orar descărcat automat prin Github Actions pentru grupa $groupName"
@@ -45,11 +48,24 @@ class StaticProgramConfiguration(@Suppress("UNUSED_PARAMETER") args: Array<out S
     override fun getTimetablePath(timetableSet: TimetableSet, groupName: String) =
         getTimetableCollectionPath(timetableSet) / "$groupName.yaml"
 
-    override fun getTimetableSetIndexUrl(timetableSet: TimetableSet): String {
+    override fun getTimetableSetIndexUrlCandidates(timetableSet: TimetableSet): List<String> {
         val (year, semester) = timetableSet
 
-        return "https://www.cs.ubbcluj.ro/files/orar/$year-$semester/tabelar/"
+        return listOf(
+            "https://www.cs.ubbcluj.ro/files/orar/$year-$semester-din-saptamana5/tabelar/",
+            "https://www.cs.ubbcluj.ro/files/orar/$year-$semester/tabelar/",
+        )
     }
+
+    override fun rememberTimetableSetIndexUrl(timetableSet: TimetableSet, url: String) {
+        resolvedTimetableSetIndexUrls[timetableSet] = url
+    }
+
+    override fun getResolvedTimetableSetIndexUrl(timetableSet: TimetableSet): String? =
+        resolvedTimetableSetIndexUrls[timetableSet]
+
+    override fun getTimetableSetIndexUrl(timetableSet: TimetableSet): String =
+        getResolvedTimetableSetIndexUrl(timetableSet) ?: getTimetableSetIndexUrlCandidates(timetableSet).first()
 
     override fun getTimetableUrl(timetableSet: TimetableSet, link: String): String =
         URI(getTimetableSetIndexUrl(timetableSet)).resolve(link).toString()
